@@ -22,28 +22,56 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
 
-    console.log(req.body.guess);
-    guesses.push(req.body.guess);
-    console.log(guesses);
-    console.log("Stage is " + stage);
+    // Track guesses
+    if (!guesses.includes(req.body.guess)){
+        guesses.push(req.body.guess);
+    }
+
+    // check if guess was correct
+    if (!word.includes(req.body.guess)){
+        console.log("Not found in word...stage increasing...");
+        stage++;
+    }
 
     // Check for win condition
+    if (isWin(word, guesses)){
+        console.log("GAME WON!");
+        
+        // empty array of guesses
+        while (guesses.length > 0){
+               guesses.pop();
+        }
 
+        stage = 0;
+
+        // route to end page
+        return;
+        
+    }
+    
     // Check for loss condition
     if (stage == 7){
-        console.log("GAME OVER!");
+        console.log("GAME LOST!");
      
         // empty array of guesses
         while (guesses.length > 0){
             guesses.pop();
         }
 
-        // figure our what to do after game is over
-    }
+        stage = 0;
 
-    if (!word.includes(req.body.guess)){
-        console.log("Not found in word...stage increasing...");
-        stage++;
+        // send to results page
+
+        res.render('gameOver', {
+            title: "GAME OVER",
+            stage: stage,
+            word: word,
+            result: "LOST",
+            game: "hangman"
+        });
+
+        return;
+        
     }
 
     res.render('hangman', {
@@ -53,6 +81,19 @@ router.post('/', (req, res) => {
         guesses: guesses       
     });
 });
+
+function isWin(word, guesses){
+    for (var i = 0; i < word.length; i++){
+        if (!guesses.includes(word[i])){
+            // user has not guessed current index of word
+            return false;
+        }
+    }
+
+    // otherwise, user must have guessed all values
+    return true;
+}
+
 
 module.exports = router;
 
