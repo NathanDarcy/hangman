@@ -5,7 +5,7 @@
 <img src="/images/hangmanS<%= stage %>.png"/>
 
 <!-- Display Word Progress -->
-<h5> 
+<h1> 
         <% for (var i = 0; i < word.length; i++){ %>
             <% if (guesses.includes(word[i]) ){ %>
                 <%= word[i] %>
@@ -14,12 +14,12 @@
             <% } %>
 
         <% } %>
-</h5>
+</h1>
 
 
 <form method="POST">
 
-    <input type="text" name="guess" />
+    <input type="text" name="guess" autofocus />
     <input type="submit" value="Guess" onclick="validate()"/> 
 
 </form>

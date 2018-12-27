@@ -1,8 +1,11 @@
 const express = require('express');
 const router = express.Router();
+const db = require('../config/database');
+const Word = require('../models/Word');
 
-var guesses = ["a", "b"];
-var word = "abcd";
+// initial game values
+var guesses = [];
+var word = getRandomWord();
 var stage = 0;
 
 router.get('/', (req, res) => {
@@ -42,9 +45,16 @@ router.post('/', (req, res) => {
                guesses.pop();
         }
 
+        // route to end page
+        res.render('gameOver', {
+            title: "GAME OVER",
+            stage: stage,
+            word: word,
+            result: "saved"
+        });
+
         stage = 0;
 
-        // route to end page
         return;
         
     }
@@ -58,17 +68,16 @@ router.post('/', (req, res) => {
             guesses.pop();
         }
 
-        stage = 0;
-
         // send to results page
-
         res.render('gameOver', {
             title: "GAME OVER",
             stage: stage,
             word: word,
-            result: "LOST",
-            game: "hangman"
+            result: "did not save"
         });
+
+        
+        stage = 0;
 
         return;
         
@@ -82,6 +91,15 @@ router.post('/', (req, res) => {
     });
 });
 
+// DB access
+router.get('/getWords', (req, res) =>
+    Word.findAll()
+    .then(words => {
+        console.log(words);
+        res.sendStatus(200);
+    })
+    .catch(err => console.log(err)));
+
 function isWin(word, guesses){
     for (var i = 0; i < word.length; i++){
         if (!guesses.includes(word[i])){
@@ -92,6 +110,16 @@ function isWin(word, guesses){
 
     // otherwise, user must have guessed all values
     return true;
+}
+
+function getRandomWord(){
+    var word = Word.findAll()
+    .then(words => {
+        console.log(words);
+    })
+    .catch(err => console.log(err));
+
+    return word;
 }
 
 

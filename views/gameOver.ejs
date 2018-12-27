@@ -1,12 +1,9 @@
 <% include partials/header %>
 
-<h1> The Game is Over! </h1>
-
+<h5> Game Progress ended: </h5>
 <img src="/images/hangmanS<%= stage %>.png"/>
 
-<h2> The word was <%= word %> </h2>
-
-<h2> You <%= result %> at <%= game %> </h2>
+<h1>You <%=result%> the hangman! The word was "<%=word%>"</h1>
 
 <li> <a href="/"> HOME </a></li>
 <li> <a href="/hangman"> PLAY AGAIN </a></li>

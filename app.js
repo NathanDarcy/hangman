@@ -10,6 +10,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
+const db = require('./config/database');
 
 const app = express();
 
@@ -24,7 +25,17 @@ app.use(express.static( path.join(__dirname, 'public') ));
 app.set('view engine', 'ejs');
 app.set('views', path.join( __dirname, 'views'));
 
-// "Controller" routing
+
+
+// Test DB
+db.authenticate()
+.then( () => {
+    console.log('Connected');
+})
+.catch(err => {
+    console.log('Error' + err);
+});
+
 
 // Home
 app.get('/', function(req, res){
