@@ -4,4 +4,9 @@ This is a simple nodejs application using ejs for the front end. It is currently
 
 TODO:
   Styling UI
-  Implement sequelize
+  
+  Finish implementation of sequelize
+  
+  Add guessed words of hangman game to display
+  
+  Add difficulty selector
