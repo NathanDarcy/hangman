@@ -5,7 +5,7 @@ const Word = require('../models/Word');
 
 // initial game values
 var guesses = [];
-var word = getRandomWord();
+var word = "default";
 var stage = 0;
 
 router.get('/', (req, res) => {
@@ -15,12 +15,17 @@ router.get('/', (req, res) => {
         guesses.pop();
     }
 
-    res.render('hangman', {
+    Word.findAll( {raw: true})
+    .then( function(words){
+        word = (words[0].word);
+        res.render('hangman', {
         title: 'Play Hangman!',
         stage: 0,
         word: word,
         guesses: guesses       
     });
+    })
+    .catch(err => console.log(err));
 });
 
 router.post('/', (req, res) => {
@@ -112,15 +117,6 @@ function isWin(word, guesses){
     return true;
 }
 
-function getRandomWord(){
-    var word = Word.findAll()
-    .then(words => {
-        console.log(words);
-    })
-    .catch(err => console.log(err));
-
-    return word;
-}
 
 
 module.exports = router;

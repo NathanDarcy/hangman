@@ -4,6 +4,14 @@
 <!-- Image of Current Hangman -->
 <img src="/images/hangmanS<%= stage %>.png"/>
 
+<!-- Display Guesses -->
+<h2>
+    <% for (var i = 0; i < guesses.length; i++){ %>
+        <%= guesses[i] %>
+
+    <% } %>
+</h2>
+
 <!-- Display Word Progress -->
 <h1> 
         <% for (var i = 0; i < word.length; i++){ %>
