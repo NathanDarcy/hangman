@@ -9,7 +9,7 @@ This is a simple nodejs application using ejs for the front end. It is currently
 
 # Optional
 You can run this application without the MySQL database. Instead of selecting a word from the database,
-hangman will use "hangman" as its default word.
+hangman will pick from a default list of words as its puzzle word.
 
 TODO:
   Styling UI

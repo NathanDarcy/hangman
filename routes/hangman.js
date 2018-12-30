@@ -5,6 +5,7 @@ const Word = require('../models/Word');
 
 // initial game values
 var guesses = [];
+var wordArr = ["hangman", "program", "computer", "java", "node"];
 var word = "default";
 var stage = 0;
 
@@ -16,14 +17,16 @@ router.get('/', (req, res) => {
     }
     stage = 0;
 
-
-    // implement difficulty selector, get random word from array instead of simply 1st one
-    Word.findAll( {raw: true})
+    // TODO: implement difficulty selector
+    Word.findAll( {
+        where: {difficulty : "hard" }, 
+        raw: true}
+    )
     .then( function(words){
 
         // word is array of Word models
-
-        word = (words[0].word);
+        word = getRandomWord(words).word;
+        //word = (words[0].word);
         res.render('hangman', {
         title: 'Play Hangman!',
         stage: 0,
@@ -32,8 +35,9 @@ router.get('/', (req, res) => {
     });
     })
     .catch(err => { 
-        console.log("couldn't connect to DB");
-        word = "hangman";
+        console.log("DB connection unavailable: using default list...");
+        word = getRandomWord(wordArr);
+        console.log(word + " was chosen.");
         res.render('hangman', {
         title: 'Play Hangman!',
         stage: 0,
@@ -121,6 +125,14 @@ function isWin(word, guesses){
 
     // otherwise, user must have guessed all values
     return true;
+}
+
+function getRandomWord(wordArr){
+    //var index = Math.random() * (max - min) + min;
+    var index = Math.random() * (wordArr.length);
+    index = Math.floor(index);
+    
+    return wordArr[index];
 }
 
 
