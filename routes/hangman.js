@@ -14,9 +14,15 @@ router.get('/', (req, res) => {
     while (guesses.length > 0){
         guesses.pop();
     }
+    stage = 0;
 
+
+    // implement difficulty selector, get random word from array instead of simply 1st one
     Word.findAll( {raw: true})
     .then( function(words){
+
+        // word is array of Word models
+
         word = (words[0].word);
         res.render('hangman', {
         title: 'Play Hangman!',
@@ -25,19 +31,27 @@ router.get('/', (req, res) => {
         guesses: guesses       
     });
     })
-    .catch(err => console.log(err));
+    .catch(err => { 
+        console.log("couldn't connect to DB");
+        word = "hangman";
+        res.render('hangman', {
+        title: 'Play Hangman!',
+        stage: 0,
+        word: word,
+        guesses: guesses
+    })});
 });
 
 router.post('/', (req, res) => {
 
     // Track guesses
     if (!guesses.includes(req.body.guess)){
-        guesses.push(req.body.guess);
+        guesses.push(req.body.guess.toLowerCase());
     }
 
     // check if guess was correct
     if (!word.includes(req.body.guess)){
-        console.log("Not found in word...stage increasing...");
+        console.log("Stage increasing to " + (stage + 1));
         stage++;
     }
 
@@ -96,14 +110,6 @@ router.post('/', (req, res) => {
     });
 });
 
-// DB access
-router.get('/getWords', (req, res) =>
-    Word.findAll()
-    .then(words => {
-        console.log(words);
-        res.sendStatus(200);
-    })
-    .catch(err => console.log(err)));
 
 function isWin(word, guesses){
     for (var i = 0; i < word.length; i++){

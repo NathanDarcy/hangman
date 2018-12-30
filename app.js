@@ -51,6 +51,8 @@ app.get('/about', function(req, res){
     });
 });
 
+/* Game routes */
+// hangman
 app.use('/hangman', require('./routes/hangman'));
 
 

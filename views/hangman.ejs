@@ -6,10 +6,12 @@
 
 <!-- Display Guesses -->
 <h2>
+    You have guessed: [
     <% for (var i = 0; i < guesses.length; i++){ %>
-        <%= guesses[i] %>
+        <%= guesses[i] %> ,
 
     <% } %>
+    ]
 </h2>
 
 <!-- Display Word Progress -->
@@ -27,8 +29,8 @@
 
 <form method="POST">
 
-    <input type="text" name="guess" autofocus />
-    <input type="submit" value="Guess" onclick="validate()"/> 
+    <input type="text" name="guess" id="guess" maxlength="1"  autofocus />
+    <input type="submit" value="Guess" onclick="return validateHangman()"/> 
 
 </form>
 
