@@ -1,11 +1,3 @@
-// Commands to start this app
-// npm init
-// npm install express --save
-// npm install body-parser --save
-// npm install ejs --save
-// npm install nodemon -g
-
-
 // imports
 const express = require('express');
 const bodyParser = require('body-parser');
