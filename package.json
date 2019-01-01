@@ -1,5 +1,5 @@
 {
-  "name": "gridgames",
+  "name": "hangman",
   "version": "1.0.0",
   "description": "Simple nodejs app with angular front end.",
   "main": "app.js",
