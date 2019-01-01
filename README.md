@@ -1,6 +1,6 @@
 # hangman
 
-This is a simple nodejs application using ejs for the front end. It is currently in development for use as a hands on learning tool for nodejs, sequelize, and express. There is one game "Hangman" which has no UI styling and simply attempts to handle all game conditions.
+This is a simple nodejs using express for the server, and ejs with bootstrap for the front end.
 
 # DB Setup
 1. This application uses a MySQL database connection. The script is located in /config/database.sql
