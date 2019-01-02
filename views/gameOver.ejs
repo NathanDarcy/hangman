@@ -2,15 +2,15 @@
 
 <div class="container">
 
-    <h5 class="display-5"> Game Progress ended: </h5>
+    <h5 class="display-5 text-center"> Game Progress ended: </h5>
 
-    <img src="/images/hangmanS<%= stage %>.png"/>
+    <img class="img-responsive rounded mx-auto d-block" src="/images/hangmanS<%= stage %>.png"/>
 
-    <h1 class="display-1">You <%=result%> the hangman! The word was "<%=word%>"</h1>
+    <h1 class="display-1 text-center text-info bg-light">You <%=result%> the hangman! The word was "<%=word%>"</h1>
 
-    <ul class = "list-inline">
-        <li class= "list-inline-item"> <a href="/"> HOME </a></li>
-        <li class= "list-inline-item"> <a href="/hangman"> PLAY AGAIN </a></li>
+    <ul class = "list-inline text-center">
+        <li class= "list-inline-item"> <a class="btn btn-primary" href="/"> HOME </a></li>
+        <li class= "list-inline-item"> <a class="btn btn-primary" href="/hangman"> PLAY AGAIN </a></li>
     </ul>
 
 </div>
