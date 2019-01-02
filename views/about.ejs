@@ -1,3 +1,49 @@
 <% include partials/header %>
-ABOUT + Contacts
+<div class="container text-justified">
+    <h3 class="display-3 text-center"> 
+        Hangman
+        <small class="text-muted">
+            <br>This is a simple nodejs using express for the server, and ejs with bootstrap for the front end.
+        </small>
+    </h3>
+
+    <hr/>
+
+    <h5 class="display-5"> 
+            To run:
+            <small>
+                <br> NOTE: This app requires nodejs.
+                <br>Start the server with nodejs by calling "node app" in the command line from the same directory as "app.js", the entry point of the application.
+                <br> Access the home page by typing "localhost:3000" in your browser. The app is configured to run on port 3000.
+            </small>
+    </h4>
+    
+    <hr/>
+
+    <h5 class="display-5">
+        DB Setup
+        <small class="text-muted">
+            <br>1. This application uses a MySQL database connection. The script is located in /config/database.sql
+            <br>2. Create a mysql database call node_js_games
+            <br>3. Run the above script to generate tables
+        </small>
+    </h5>
+
+    <hr/>
+
+    <h6 class="display-6"> 
+        Optional 
+        <small class="text-muted">
+            <br>You can run this application without the MySQL database. Instead of selecting a word from the database, hangman will pick from a default list of words as its puzzle word.
+        </small>
+    </h6>
+
+    <hr>
+    <h6 class="display-6"> 
+        Bugs
+        <small class="text-muted">
+            <br>When a user attempts to refresh the game over page, the app redirects to the game page already in progress. Users should use the "Play again" link to avoid this until a fix can be made.
+        </small>
+    </h6>
+</div>
 <% include partials/footer %>
