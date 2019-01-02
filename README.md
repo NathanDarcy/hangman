@@ -11,7 +11,8 @@ This is a simple nodejs using express for the server, and ejs with bootstrap for
 You can run this application without the MySQL database. Instead of selecting a word from the database,
 hangman will pick from a default list of words as its puzzle word.
 
+# Bugs
+When a user attempts to refresh the game over page, the app redirects to the game page already in progress. Users should use the "Play again" link to avoid this until a fix can be made.
+
 TODO:
-  Styling UI
-  
-  Implement hangman difficulty selector
+  About page

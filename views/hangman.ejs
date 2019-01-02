@@ -1,37 +1,40 @@
 <% include partials/header %>
-<h1> HANGMAN </h1>
+<div class="container">
 
-<!-- Image of Current Hangman -->
-<img src="/images/hangmanS<%= stage %>.png"/>
+    <h1 class="display-1 text-center"> HANGMAN </h1>
+        
+    <!-- Image of Current Hangman -->
+    <img class="img-responsive rounded mx-auto d-block" src="/images/hangmanS<%= stage %>.png"/>
 
-<!-- Display Guesses -->
-<h2>
-    You have guessed: [
-    <% for (var i = 0; i < guesses.length; i++){ %>
-        <%= guesses[i] %> ,
-
-    <% } %>
-    ]
-</h2>
-
-<!-- Display Word Progress -->
-<h1> 
-        <% for (var i = 0; i < word.length; i++){ %>
-            <% if (guesses.includes(word[i]) ){ %>
-                <%= word[i] %>
-            <% } else { %>
-                <%= '_' %>
-            <% } %>
-
+    <!-- Display Guesses -->
+    <h2 class="display-4 text-center">
+        Your guesses: [
+        <% for (var i = 0; i < guesses.length; i++){ %>
+            <%= guesses[i] %> ,
         <% } %>
-</h1>
+        ]
+    </h2>
+
+    <!-- Display Word Progress -->
+    <h2 class="display-4 text-center"> 
+            <% for (var i = 0; i < word.length; i++){ %>
+                <% if (guesses.includes(word[i]) ){ %>
+                    <%= word[i] %>
+                <% } else { %>
+                    <%= '_' %>
+                <% } %>
+
+            <% } %>
+    </h2>
 
 
-<form method="POST">
+    <form class="text-center" method="POST">
 
-    <input type="text" name="guess" id="guess" maxlength="1"  autofocus />
-    <input type="submit" value="Guess" onclick="return validateHangman()"/> 
+        <input type="text" name="guess" id="guess" maxlength="1"  autofocus />
+        <input type="submit" value="Guess" onclick="return validateHangman()"/> 
 
-</form>
+    </form>
+
+</div>
 
 <% include partials/footer %>

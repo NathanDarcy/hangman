@@ -1,13 +1,17 @@
 <% include partials/header %>
 
-<h5> Game Progress ended: </h5>
-<img src="/images/hangmanS<%= stage %>.png"/>
+<div class="container">
 
-<h1>You <%=result%> the hangman! The word was "<%=word%>"</h1>
+    <h5 class="display-5"> Game Progress ended: </h5>
 
-<ul>
-    <li> <a href="/"> HOME </a></li>
-    <li> <a href="/hangman"> PLAY AGAIN </a></li>
-</ul>
+    <img src="/images/hangmanS<%= stage %>.png"/>
 
+    <h1 class="display-1">You <%=result%> the hangman! The word was "<%=word%>"</h1>
+
+    <ul class = "list-inline">
+        <li class= "list-inline-item"> <a href="/"> HOME </a></li>
+        <li class= "list-inline-item"> <a href="/hangman"> PLAY AGAIN </a></li>
+    </ul>
+
+</div>
 <% include partials/footer %>

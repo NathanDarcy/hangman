@@ -32,14 +32,14 @@ db.authenticate()
 // Home
 app.get('/', function(req, res){
     res.render('index', {
-        title: 'GridGames Home'        
+        title: 'Hangman Home'        
     });
 });
 
 // About
 app.get('/about', function(req, res){
     res.render('about', {
-        title: 'GridGames About'        
+        title: 'Hangman About'        
     });
 });
 

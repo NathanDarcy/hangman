@@ -19,13 +19,14 @@ router.get('/', (req, res) => {
 
     // TODO: implement difficulty selector
     Word.findAll( {
-        where: {difficulty : "hard" }, 
+        //where: {difficulty : req.body.difficulty }, 
         raw: true}
     )
     .then( function(words){
 
         // word is array of Word models
         word = getRandomWord(words).word;
+        console.log(word + " was chosen");
         //word = (words[0].word);
         res.render('hangman', {
         title: 'Play Hangman!',
@@ -35,7 +36,7 @@ router.get('/', (req, res) => {
     });
     })
     .catch(err => { 
-        console.log("DB connection unavailable: using default list...");
+        //console.log("DB connection unavailable: using default list...");
         word = getRandomWord(wordArr);
         console.log(word + " was chosen.");
         res.render('hangman', {
@@ -76,6 +77,9 @@ router.post('/', (req, res) => {
             result: "saved"
         });
 
+        while (guesses.length > 0){
+            guesses.pop();
+        }
         stage = 0;
 
         return;
@@ -99,7 +103,9 @@ router.post('/', (req, res) => {
             result: "did not save"
         });
 
-        
+        while (guesses.length > 0){
+            guesses.pop();
+        }
         stage = 0;
 
         return;
@@ -113,7 +119,6 @@ router.post('/', (req, res) => {
         guesses: guesses       
     });
 });
-
 
 function isWin(word, guesses){
     for (var i = 0; i < word.length; i++){
